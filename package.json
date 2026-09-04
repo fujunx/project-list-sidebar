@@ -1,0 +1,171 @@
+{
+  "name": "project-list-sidebar",
+  "displayName": "项目列表 (Project List)",
+  "description": "像 WebStorm 一样的项目列表：侧边栏常驻，支持为项目二次命名、置顶，优先展示已命名项目。",
+  "version": "0.0.1",
+  "publisher": "local-dev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fujunx/project-list-sidebar.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "project",
+    "projects",
+    "launcher",
+    "webstorm",
+    "项目列表",
+    "quick open"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:projectList.refresh",
+    "onCommand:projectList.addCurrent",
+    "onCommand:projectList.addProject",
+    "onCommand:projectList.openConfig",
+    "onCommand:projectList.reveal"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "projectList",
+          "title": "项目列表",
+          "icon": "media/projects.svg"
+        }
+      ]
+    },
+    "views": {
+      "projectList": [
+        {
+          "id": "projectListProjects",
+          "name": "",
+          "type": "webview",
+          "icon": "media/projects.svg"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "projectList.addCurrent",
+        "title": "添加当前项目",
+        "category": "项目列表",
+        "icon": "$(add)"
+      },
+      {
+        "command": "projectList.addProject",
+        "title": "添加项目（选择目录）",
+        "category": "项目列表",
+        "icon": "$(file-directory-create)"
+      },
+      {
+        "command": "projectList.refresh",
+        "title": "刷新",
+        "category": "项目列表",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "projectList.openConfig",
+        "title": "打开配置文件",
+        "category": "项目列表",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "projectList.reveal",
+        "title": "聚焦项目列表",
+        "category": "项目列表",
+        "icon": "$(list-tree)"
+      },
+      {
+        "command": "projectList.open",
+        "title": "打开项目",
+        "category": "项目列表"
+      },
+      {
+        "command": "projectList.rename",
+        "title": "重命名（二次命名）",
+        "category": "项目列表",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "projectList.clearName",
+        "title": "清除自定义名称",
+        "category": "项目列表"
+      },
+      {
+        "command": "projectList.togglePriority",
+        "title": "切换置顶",
+        "category": "项目列表",
+        "icon": "$(star)"
+      },
+      {
+        "command": "projectList.remove",
+        "title": "从列表移除",
+        "category": "项目列表",
+        "icon": "$(trash)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "projectList.addProject",
+          "when": "view == projectListProjects",
+          "group": "navigation@1"
+        },
+        {
+          "command": "projectList.refresh",
+          "when": "view == projectListProjects",
+          "group": "navigation@2"
+        },
+        {
+          "command": "projectList.openConfig",
+          "when": "view == projectListProjects",
+          "group": "navigation@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "项目列表",
+      "properties": {
+        "projectList.showOnStartup": {
+          "type": "boolean",
+          "default": true,
+          "description": "VS Code 启动时自动把侧边栏切换/聚焦到「项目列表」视图。"
+        },
+        "projectList.preferNamedFirst": {
+          "type": "boolean",
+          "default": true,
+          "description": "优先展示已命名的项目（有二次命名的排在前面）。",
+          "order": 2
+        },
+        "projectList.configPath": {
+          "type": "string",
+          "default": "~/.vscode-project-list.json",
+          "description": "项目列表配置文件路径。支持 ~ 表示用户主目录。"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "node ./esbuild.js",
+    "watch": "node ./esbuild.js --watch",
+    "package": "node ./esbuild.js --production",
+    "vsix": "npm run package && vsce package --no-dependencies",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.1",
+    "esbuild": "^0.24.2",
+    "typescript": "^5.7.3"
+  }
+}
