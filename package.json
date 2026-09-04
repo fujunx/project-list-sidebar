@@ -165,7 +165,7 @@
     "watch": "node ./esbuild.js --watch",
     "package": "node ./esbuild.js --production",
     "bump": "node ./scripts/bump-version.js",
-    "release": "node ./scripts/release.js",
+    "release": "npm run bump && npm run vsix",
     "vsix": "npm run package && vsce package --no-dependencies",
     "typecheck": "tsc --noEmit"
   },
