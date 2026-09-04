@@ -1,5 +1,7 @@
 .vscode/**
 src/**
+scripts/**
+.github/**
 node_modules/**
 out/**
 *.vsix
@@ -7,6 +9,7 @@ out/**
 .eslintrc.json
 tsconfig.json
 esbuild.js
+install.bat
 **/*.map
 **/*.ts
 **/*.tsx
