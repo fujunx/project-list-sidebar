@@ -45,4 +45,20 @@ npm run vsix   # 生成 .vsix
 
 ---
 
-开发命令：`npm run compile`（编译）、`npm run watch`（监听）、`npm run typecheck`（类型检查）、`npm run vsix`（打包）。
+## 开发命令
+
+`npm run compile`（编译）· `npm run watch`（监听）· `npm run typecheck`（类型检查）· `npm run vsix`（打包）
+
+## 发新版本（版本号自动递增）
+
+执行 `npm run release`：它会**自动把 `package.json` 版本 +1**（如 `0.0.1 → 0.0.2`，patch 满 9 进位到 minor）并打包出对应版本的 `.vsix`，避免每次版本号一样、分不清新旧。
+
+打包后提交并打标签推送（GitHub Actions 会自动建 Release 并挂上 `.vsix`）：
+
+```bash
+npm run release
+git add -A && git commit -m "v0.0.2"
+git tag v0.0.2
+git push origin main --tags
+```
+
