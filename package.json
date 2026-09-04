@@ -32,6 +32,12 @@
     "onCommand:projectList.reveal"
   ],
   "main": "./dist/extension.js",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true,
+      "description": "本扩展只是管理用户主目录下的项目列表配置并打开新的项目窗口，不读取当前工作区内容，因此在受限模式（不信任工作区）下也能正常工作。"
+    }
+  },
   "contributes": {
     "viewsContainers": {
       "activitybar": [
