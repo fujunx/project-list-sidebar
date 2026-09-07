@@ -2,7 +2,7 @@
   "name": "project-list-sidebar",
   "displayName": "项目列表 (Project List)",
   "description": "像 WebStorm 一样的项目列表：侧边栏常驻，支持为项目二次命名、置顶，优先展示已命名项目。",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "publisher": "local-dev",
   "license": "MIT",
   "repository": {
