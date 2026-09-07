@@ -1,4 +1,4 @@
-# 项目列表 (Project List) · 下载最新版：https://github.com/fujunx/project-list-sidebar/releases
+# 项目列表 (Project List) · [点击此处下载](https://github.com/fujunx/project-list-sidebar/releases)
 
 一个复刻 WebStorm 项目列表体验的 VS Code 扩展：在左侧活动栏常驻一个**项目列表**，方便你集中管理、快速打开多个项目。
 
