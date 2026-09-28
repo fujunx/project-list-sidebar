@@ -2,7 +2,7 @@
   "name": "project-list-sidebar",
   "displayName": "项目列表 (Project List)",
   "description": "像 WebStorm 一样的项目列表：侧边栏常驻，支持合集（可嵌套）、重命名、收藏置顶与拖拽排序。",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "local-dev",
   "license": "MIT",
   "repository": {
@@ -75,7 +75,7 @@
         "command": "projectList.addProject",
         "title": "添加项目（选择目录）",
         "category": "项目列表",
-        "icon": "$(file-directory-create)"
+        "icon": "$(folder-opened)"
       },
       {
         "command": "projectList.newCollection",
