@@ -1,8 +1,8 @@
 {
   "name": "project-list-sidebar",
   "displayName": "项目列表 (Project List)",
-  "description": "像 WebStorm 一样的项目列表：侧边栏常驻，支持为项目二次命名、置顶，优先展示已命名项目。",
-  "version": "0.0.8",
+  "description": "像 WebStorm 一样的项目列表：侧边栏常驻，支持合集（可嵌套）、重命名、收藏置顶与拖拽排序。",
+  "version": "0.1.1",
   "publisher": "local-dev",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,14 @@
     "onCommand:projectList.refresh",
     "onCommand:projectList.addCurrent",
     "onCommand:projectList.addProject",
+    "onCommand:projectList.newCollection",
     "onCommand:projectList.openConfig",
     "onCommand:projectList.reveal",
-    "onCommand:projectList.openNewWindow"
+    "onCommand:projectList.openNewWindow",
+    "onCommand:projectList.moveToCollection",
+    "onCommand:projectList.renameCollection",
+    "onCommand:projectList.removeCollection",
+    "onCommand:projectList.moveCollection"
   ],
   "main": "./dist/extension.js",
   "capabilities": {
@@ -73,6 +78,12 @@
         "icon": "$(file-directory-create)"
       },
       {
+        "command": "projectList.newCollection",
+        "title": "新建合集",
+        "category": "项目列表",
+        "icon": "$(new-folder)"
+      },
+      {
         "command": "projectList.refresh",
         "title": "刷新",
         "category": "项目列表",
@@ -102,18 +113,18 @@
       },
       {
         "command": "projectList.rename",
-        "title": "重命名（二次命名）",
+        "title": "重命名",
         "category": "项目列表",
         "icon": "$(edit)"
       },
       {
         "command": "projectList.clearName",
-        "title": "清除自定义名称",
+        "title": "清除名称",
         "category": "项目列表"
       },
       {
         "command": "projectList.togglePriority",
-        "title": "切换置顶",
+        "title": "收藏 / 取消收藏",
         "category": "项目列表",
         "icon": "$(star)"
       },
@@ -122,6 +133,27 @@
         "title": "从列表移除",
         "category": "项目列表",
         "icon": "$(trash)"
+      },
+      {
+        "command": "projectList.moveToCollection",
+        "title": "移动到合集",
+        "category": "项目列表",
+        "icon": "$(folder-library)"
+      },
+      {
+        "command": "projectList.renameCollection",
+        "title": "重命名合集",
+        "category": "项目列表"
+      },
+      {
+        "command": "projectList.removeCollection",
+        "title": "删除合集",
+        "category": "项目列表"
+      },
+      {
+        "command": "projectList.moveCollection",
+        "title": "移动合集",
+        "category": "项目列表"
       }
     ],
     "menus": {
@@ -132,14 +164,19 @@
           "group": "navigation@1"
         },
         {
-          "command": "projectList.refresh",
+          "command": "projectList.newCollection",
           "when": "view == projectListProjects",
           "group": "navigation@2"
         },
         {
-          "command": "projectList.openConfig",
+          "command": "projectList.refresh",
           "when": "view == projectListProjects",
           "group": "navigation@3"
+        },
+        {
+          "command": "projectList.openConfig",
+          "when": "view == projectListProjects",
+          "group": "navigation@4"
         }
       ]
     },
@@ -154,7 +191,7 @@
         "projectList.preferNamedFirst": {
           "type": "boolean",
           "default": true,
-          "description": "优先展示已命名的项目（有二次命名的排在前面）。",
+          "description": "优先展示已重命名的项目（有自定义名称的排在前面）。",
           "order": 2
         },
         "projectList.configPath": {
