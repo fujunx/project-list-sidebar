@@ -471,9 +471,14 @@ class ProjectStore {
 	// VS Code shows a folder's basename as the window title. To show an alias,
 	// we open a generated `.code-workspace` whose `name` field = the nickname.
 
-	/** Directory that holds generated `.code-workspace` files, next to the config. */
+	/**
+	 * Directory that holds the generated `.code-workspace` files. This lives in the extension's
+	 * global storage rather than next to the config file: the default config path is
+	 * `~/.vscode-project-list.json`, so placing them next to it dropped a `project-workspaces/`
+	 * folder straight into the user's home directory.
+	 */
 	private workspacesDir(): string {
-		return path.join(path.dirname(this.fileUri.fsPath), "project-workspaces");
+		return path.join(this.context.globalStorageUri.fsPath, "project-workspaces");
 	}
 
 	/** The generated `.code-workspace` URI for a named folder project, if any. */

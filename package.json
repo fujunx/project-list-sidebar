@@ -2,12 +2,16 @@
   "name": "project-list-sidebar",
   "displayName": "项目列表 (Project List)",
   "description": "像 WebStorm 一样的项目列表：侧边栏常驻，支持合集（可嵌套）、重命名、收藏置顶与拖拽排序。",
-  "version": "0.1.2",
-  "publisher": "local-dev",
+  "version": "0.1.3",
+  "publisher": "fujunx",
   "license": "MIT",
+  "icon": "media/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/fujunx/project-list-sidebar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fujunx/project-list-sidebar/issues"
   },
   "engines": {
     "vscode": "^1.85.0"
@@ -15,12 +19,22 @@
   "categories": [
     "Other"
   ],
+  "galleryBanner": {
+    "color": "#0F766E",
+    "theme": "dark"
+  },
   "keywords": [
     "project",
     "projects",
+    "project manager",
+    "project switcher",
+    "workspace",
     "launcher",
+    "sidebar",
     "webstorm",
     "项目列表",
+    "项目启动器",
+    "合集",
     "quick open"
   ],
   "activationEvents": [
@@ -186,7 +200,7 @@
         "projectList.showOnStartup": {
           "type": "boolean",
           "default": true,
-          "description": "VS Code 启动时自动把侧边栏切换/聚焦到「项目列表」视图。"
+          "description": "启动时如果没有打开任何文件夹，自动把侧边栏切换到「项目列表」视图（把 VS Code 当项目启动器用）。打开着项目的窗口不会被影响。"
         },
         "projectList.preferNamedFirst": {
           "type": "boolean",
